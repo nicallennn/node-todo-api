@@ -25,14 +25,14 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', { useNewUrlParser: true
   const deleteMatchesText = (text, all) => {
     //if all === true -> delete all documents, else -> delete first instance
     if (all) {
-      // deleteMany -> target collection -> deleteMany where text property === 'Eat lunch' string -> callback
+      // deleteMany -> target collection -> deleteMany where text property === text argument -> resolve promise
       db.collection('Todos').deleteMany({ text: text }).then((res) => {
         console.log(res)
         //log no. of deleted documents
         console.log(`${res.result.n} Todos were deleted!`)
       })
     } else {
-      // deleteOne -> traget collection -> delete first document where text property === 'Eat lunch' string -> callback
+      // deleteOne -> traget collection -> delete first document where text property === text argument string -> callback
       db.collection('Todos').deleteOne({ text: text }).then((res) => {
         console.log(res)
       })
