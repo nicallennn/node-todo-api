@@ -67,5 +67,5 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', { useNewUrlParser: true
 
 
   //close the connection
-  client.close().then((res))
+  client.close()
 })  
