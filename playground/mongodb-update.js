@@ -19,25 +19,34 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', { useNewUrlParser: true
    *  ******* MOGO UPDATE METHODS ********
    *  ===================================*
    * -> UPDATE A TODO FROM ID,           *
-   * -> DELETE FROM USERS COLLECTION     *
+   * -> UPDATE A USER, INCREMENT FIELD   *
    * ************************************/
 
   //update a document field on id -> findOneAndUpdate returns the original document, not upated document
-  db.collection('Todos').findOneAndUpdate({
-    _id: new ObjectID('5bfab7192431972593ff8dd1')
-  }, {
+  db.collection('Todos').findOneAndUpdate(
+    {
+      //filter -> filter by object ID
+      _id: new ObjectID('5bfab7192431972593ff8dd1')
+    },
+    {
+      //update operators -> set completed field to true
       $set: {
         completed: true
       }
-    }, {
+    },
+    {
+      //options -> do NOT return the original document
       returnOriginal: false
     }).then((res) => {
+      //resolve promise -> print the res object
       console.log(res)
     })
 
-  db.collection('users').findOneAndUpdate({
-    _id: new ObjectID('5bf9c717108923462ede7986')
-  }, {
+  db.collection('users').findOneAndUpdate(
+    {
+      _id: new ObjectID('5bf9c717108923462ede7986')
+    },
+    {
       $set: {
         name: 'Nikolas Allen'
       },
