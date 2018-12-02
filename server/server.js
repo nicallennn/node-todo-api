@@ -25,13 +25,13 @@ app.post('/todos', (req, res) => {
     res.send(doc)                     //send doc back to client
   }, (e) => {
     res.status(400).send(e)           //send http status & error back to client
-
   })
 })
 
 //route to get todos
 app.get('/todos', (req, res) => {
   Todo.find().then((todos) => {
+    //send back an object containting the todos array etc.
     res.send({
       todos
     })
