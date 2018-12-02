@@ -26,33 +26,33 @@ User.findById(userId).then((user) => {
   console.log('Error: ', e)
 })
 
-// //find all todos where _id === id
-// Todo.find({
-//   _id: id                       //pass in string id -> mongoose converts to object id and then runs query
-// }).then((todos) => {
-//   if (todos.length > 0) {
-//     console.log('Todos', todos)
-//   }
-// })
+//find all todos where _id === id
+Todo.find({
+  _id: id                       //pass in string id -> mongoose converts to object id and then runs query
+}).then((todos) => {
+  if (todos.length > 0) {
+    console.log('Todos', todos)
+  }
+})
 
-// //find one todo where _id === id
-// Todo.findOne({
-//   _id: id
-// }).then((todo) => {
-//   if (todo) {
-//     console.log('Todo: ', todo)
-//   }
+//find one todo where _id === id
+Todo.findOne({
+  _id: id
+}).then((todo) => {
+  if (todo) {
+    console.log('Todo: ', todo)
+  }
 
-// })
+})
 
-// //find todo by id where _id === id
-// Todo.findById(id).then((todo) => {
-//   ///if the id is not found, return error message
-//   if (!todo) {
-//     return console.log('Id not found!')
-//   }
-//   //if id is found, log the details of the todo
-//   console.log('Todo by id: ', todo)
-// }).catch((e) => {
-//   console.log(e)
-// })
+//find todo by id where _id === id
+Todo.findById(id).then((todo) => {
+  ///if the id is not found, return error message
+  if (!todo) {
+    return console.log('Id not found!')
+  }
+  //if id is found, log the details of the todo
+  console.log('Todo by id: ', todo)
+}).catch((e) => {
+  console.log(e)
+})

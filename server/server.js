@@ -1,6 +1,7 @@
 /* LIBRARY IMPORTS */
 const express = require('express')
 const bodyParser = require('body-parser') //takes json and converts it to an object
+const { ObjectId } = require('mongodb')
 
 /* LOCAL IMPORTS */
 //require mongoose + models
@@ -40,12 +41,35 @@ app.get('/todos', (req, res) => {
   })
 })
 
+app.get('/todos/:id', (req, res) => {
+  //get the id from the request object -> params -> id
+  const id = req.params.id
+  //validate id -> return 400 if invalid
+  if (!ObjectId.isValid(id)) {
+    return res.status(404).send()
+  }
+
+  //find a single todo using the findById method
+  Todo.findById(id).then((todo) => {
+    //if a todo is found, send the todo back to the client, else send 400 + empty send()
+    if (!todo) {
+      return res.status(404).send()
+    }
+    //happy path
+    res.send({ todo })
+  }).catch((e) => {
+    //any errors -> send 400 + empty send()
+    res.status(400).send()
+  })
+
+})
+
 //listen on port 3000
 app.listen(3000, () => {
   console.log('Server up and running on port 3000...')
 })
 
-
+module.exports = { app }
 
 
 
